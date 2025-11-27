@@ -1,0 +1,14 @@
+# /etc/systemd/system/flaskapi.service
+
+[Unit]
+Description=Flask API using Gunicorn
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/var/www/youtube-video-downloader-api
+ExecStart=/usr/local/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 wsgi:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
