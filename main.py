@@ -6,7 +6,11 @@ app = Flask(__name__)
 
 def download_video(url, resolution):
     try:
-        yt = YouTube(url)
+        yt = YouTube(
+            url,
+            use_oauth=True,
+            allow_oauth_cache=True
+        )
         
         # Debug: Print all available streams
         print(f"Available progressive streams for {url}:")
@@ -118,3 +122,4 @@ def available_resolutions():
     
 if __name__ == '__main__':
     app.run(debug=True)
+
